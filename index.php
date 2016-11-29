@@ -32,7 +32,7 @@ if( $curl = curl_init() and $_POST['search']) {
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     $out = curl_exec($curl);
 
-    $obj = json_decode($out,true);
+    $obj = json_decode($out,true); // "разбиваем" результат
 
 
 
@@ -46,14 +46,14 @@ if( $curl = curl_init() and $_POST['search']) {
 
 
 
-for($i = 0; $i < $count; $i++) {
+for($i = 0; $i < $count; $i++) { // и выводим в цикле
 
 
 
-        $video_name = $obj ['items'][$i]['snippet']['title'] . "<br>";
-        $date =  $obj ['items'][$i]['snippet']['publishedAt'] . "<br>";
-        $author = $obj ['items'][$i]['snippet']['channelTitle'] . "<br>";
-        $video_id = $obj['items'][$i]['id']['videoId'];
+        $video_name = $obj ['items'][$i]['snippet']['title'] . "<br>"; //название видео
+        $date =  $obj ['items'][$i]['snippet']['publishedAt'] . "<br>"; //дата загрузки
+        $author = $obj ['items'][$i]['snippet']['channelTitle'] . "<br>"; //автор
+        $video_id = $obj['items'][$i]['id']['videoId']; //ссылка видео для плеера
 
 
 
@@ -63,7 +63,7 @@ print <<<HERE
 
 
         <section id="$i">
-         <h2><a href="#$i">$video_name, автор этого видео: $author, выложено в $date</a></h2>
+         <h2><a href="#$i">$video_name автор этого видео: $author выложено в $date</a></h2>
         <div>
 
             <iframe width="560" height="315" src="https://www.youtube.com/embed/$video_id" frameborder="0" allowfullscreen>
